@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vidéo en plein écran</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+
+        #myVideo {
+            width: 100vw;
+            height: 100vh;
+        }
+
+        #myVideo::-webkit-media-controls-mute-button,
+        #myVideo::-webkit-media-controls-volume-slider {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<video id="myVideo" controls muted onclick="toggleFullScreen()">
+    <source src="assets/images/portfolio/video.mp4" type="video/mp4">
+    Votre navigateur ne prend pas en charge la balise video.
+</video>
+
+<script>
+    function toggleFullScreen() {
+        var video = document.getElementById("myVideo");
+
+        if (!document.fullscreenElement) {
+            if (video.requestFullscreen) {
+                video.requestFullscreen();
+            } else if (video.mozRequestFullScreen) { // Firefox
+                video.mozRequestFullScreen();
+            } else if (video.webkitRequestFullscreen) { // Chrome, Safari and Opera
+                video.webkitRequestFullscreen();
+            } else if (video.msRequestFullscreen) { // IE/Edge
+                video.msRequestFullscreen();
+            }
+        }
+    }
+</script>
+
+</body>
+</html>
